@@ -35,10 +35,10 @@ const SearchBar = () => {
         onChange={e => setUserName(e.target.value)}
         onKeyDown={e => e.key === "Enter" && handleSearch()}
         placeholder="Enter a GitHub username..."
-        className="pl-8 bg-transparent text-white placeholder-[#807C8F] focus:outline-none text-lg"
+        className="w-full pl-8 bg-transparent text-white placeholder-[#807C8F] focus:outline-none text-lg"
       />
       <button onClick={handleSearch}>
-        <IoSearch className="text-white text-2xl transition-transform transform hover:scale-125 duration-300 cursor-pointer" />
+        <IoSearch className="mx-6 text-white text-3xl transition-transform transform hover:scale-125 duration-300 cursor-pointer" />
       </button>
     </div>
   );

@@ -1,72 +1,41 @@
-// src/app/page.tsx
-"use client"; // 파일의 첫 줄에 추가하여 클라이언트 컴포넌트로 설정
-
-import { useEffect, useState } from "react";
-import Image from "next/image"; // Next.js 최적화된 이미지 컴포넌트 사용
-
-interface User {
-  login: string;
-  name: string;
-  avatar_url: string;
-  bio: string;
-  public_repos: number;
-  followers: number;
-  following: number;
-}
-
-export default function HomePage() {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchUser = async (username: string) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`https://api.github.com/users/${username}`);
-      if (!response.ok) {
-        throw new Error("User not found");
-      }
-      const data = await response.json();
-      setUser(data);
-      setError(null);
-    } catch (err) {
-      setError((err as Error).message);
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchUser("kimjusnu"); // 초기 테스트용으로 유저 이름 설정
-  }, []);
-
+"use client";
+import { IoLogoGithub } from "react-icons/io";
+import SearchBar from "./components/SearchBar";
+import VisitorCounter from "./components/VisitorCounter";
+const page = () => {
   return (
-    <div className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-4xl font-bold text-center mb-8">
-        GitHub Profile Viewer
-      </h1>
-      {loading && <p className="text-center">Loading...</p>}
-      {error && <p className="text-center text-red-500">{error}</p>}
-      {user && (
-        <div className="max-w-md mx-auto bg-14213d p-6 rounded-lg shadow-lg">
-          <Image
-            src={"/public/vercel.svg"}
-            alt="User Avatar"
-            width={300}
-            height={300}
-            className="rounded-full mx-auto mb-4"
-          />
-          <h2 className="text-2xl font-bold text-center">{user.name}</h2>
-          <p className="text-center text-gray-400">@{user.login}</p>
-          <p className="text-center text-gray-300 mt-2">{user.bio}</p>
-          <div className="flex justify-around mt-4">
-            <p>Repos: {user.public_repos}</p>
-            <p>Followers: {user.followers}</p>
-            <p>Following: {user.following}</p>
+    <div className="h-screen flex flex-col items-center justify-between px-4 py-10">
+      <div className="flex flex-col space-y-20">
+        <div className="flex flex-col space-y-10 mt-14">
+          <div className="mt-8 text-2xl text-[#F5EFFB] flex items-center justify-center">
+            <IoLogoGithub className="text-[#F5EFFB] mr-3" /> GitHub Profile
+            Viewer
+          </div>
+          <div
+            style={{ lineHeight: "1.2" }}
+            className=" text-[#F5EFFB] tracking-wider text-center text-6xl font-bold flex justify-center items-center"
+          >
+            Search for a GitHub user
+            <br />
+            and browse their repositories
+            <br />
+            effortlessly.
           </div>
         </div>
-      )}
+        {/* 구분선 */}
+        <div className="flex flex-col justify-center space-y-4">
+          <div className="flex justify-center items-center">
+            <SearchBar />
+          </div>
+          <div className="text-[#807C8F] flex justify-center items-center text-center">
+            Note: Limited to 60 requests per hour for unauthenticated users.
+          </div>
+        </div>
+        <div className="text-[#9D95B9] flex justify-center text-center items-center mt-10">
+          <VisitorCounter />
+        </div>
+      </div>
     </div>
   );
-}
+};
+export default page;

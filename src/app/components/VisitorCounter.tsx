@@ -21,19 +21,19 @@ const VisitorCounter = () => {
   return (
     <div className="flex space-x-8">
       <div className="flex items-center space-x-2">
-        <span className="text-white">
+        <span className="text-[#9D95B9]">
           <MdPeopleOutline />
         </span>
-        <div className="text-white">
+        <div className="text-[#9D95B9]">
           <span className="font-semibold">Total Visitors: </span>
           {totalVisitors.toLocaleString()}
         </div>
       </div>
       <div className="flex items-center space-x-2">
-        <span className="text-white">
+        <span className="text-[#9D95B9]">
           <MdOutlineCalendarToday />
         </span>
-        <div className="text-white">
+        <div className="text-[#9D95B9]">
           <span className="font-semibold">Today: </span>
           {todayVisitors.toLocaleString()}
         </div>

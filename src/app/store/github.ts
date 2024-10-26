@@ -6,13 +6,42 @@ interface User {
   avatar_url: string;
   name: string;
   bio: string;
+  location: string;
+  company: string;
+  followers: number;
+  following: number;
+  created_at: string;
+  updated_at: string;
+  email: string;
+  blog: string;
+  twitter_username: string;
+  hireable: boolean;
+  public_gists: number;
   public_repos: number;
 }
 
-// 상태관리할 객체 인터페이스 정의
+// 레포지토리 정보 인터페이스 정의
+interface Repository {
+  name: string;
+  description: string;
+  html_url: string;
+  language: string;
+  stargazers_count: number;
+  forks_count: number;
+  open_issues_count: number;
+  watchers_count: number;
+  size: number;
+  license: { name: string };
+  created_at: string;
+  updated_at: string;
+}
+
+// 상태관리 인터페이스 정의
 interface UserStore {
   user: User | null;
+  repositories: Repository[];
   setUser: (user: User) => void;
+  setRepositories: (repos: Repository[]) => void;
   clearUser: () => void;
   totalVisitors: number;
   todayVisitors: number;
@@ -20,7 +49,7 @@ interface UserStore {
   resetTodayVisitors: () => void;
 }
 
-// LocalStorage에서 초기 방문자 수 가져오기 (없으면 0으로 초기화)
+// LocalStorage에서 초기 방문자 수 가져오기
 const getInitialVisitors = () => {
   const total = localStorage.getItem("totalVisitors");
   const today = localStorage.getItem("todayVisitors");
@@ -33,20 +62,25 @@ const getInitialVisitors = () => {
 
 // Zustand 스토어 생성
 const github = create<UserStore>(set => ({
-  user: null, // 초기 유저 상태
+  // 초기 상태
+  user: null,
+  repositories: [],
+
+  // 유저와 레포지토리 상태 관리
   setUser: user => set({ user }),
-  clearUser: () => set({ user: null }),
+  setRepositories: repos => set({ repositories: repos }),
+  clearUser: () => set({ user: null, repositories: [] }),
 
   // 방문자 수 초기화
   ...getInitialVisitors(),
 
-  // 방문자 수 증가 함수
+  // 방문자 수 증가
   incrementVisitors: () =>
     set(state => {
       const newTotal = state.totalVisitors + 1;
       const newToday = state.todayVisitors + 1;
 
-      // LocalStorage에 새로운 값 저장
+      // LocalStorage에 저장
       localStorage.setItem("totalVisitors", newTotal.toString());
       localStorage.setItem("todayVisitors", newToday.toString());
 
@@ -56,7 +90,7 @@ const github = create<UserStore>(set => ({
       };
     }),
 
-  // 오늘 방문자 수 초기화 함수 (예: 하루가 지났을 때)
+  // 오늘 방문자 수 초기화
   resetTodayVisitors: () =>
     set(() => {
       localStorage.setItem("todayVisitors", "0");

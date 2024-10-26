@@ -22,7 +22,7 @@ const RepositoryCard = ({
   return (
     <div className="bg-[#332957] rounded-lg p-6 shadow-md w-[300px] h-[320px]">
       {url ? (
-        <Link href={url} passHref>
+        <Link href={url} legacyBehavior passHref>
           <a
             target="_blank"
             rel="noopener noreferrer"

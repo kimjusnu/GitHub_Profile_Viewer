@@ -1,38 +1,38 @@
-import { useEffect, useRef } from "react";
+"use client"; // 클라이언트 전용 컴포넌트
+import { useEffect, useRef, useState } from "react";
 import github from "../store/github";
 import { MdPeopleOutline, MdOutlineCalendarToday } from "react-icons/md";
 
 const VisitorCounter = () => {
-  // 개별 셀렉터로 분리하여 불필요한 리렌더링 방지
+  const [loaded, setLoaded] = useState(false); // Hydration 방지용 상태
   const totalVisitors = github(state => state.totalVisitors);
   const todayVisitors = github(state => state.todayVisitors);
   const incrementVisitors = github(state => state.incrementVisitors);
 
-  const isVisited = useRef(false);
+  const isVisited = useRef(false); // 첫 방문 여부 추적
 
   useEffect(() => {
-    // 컴포넌트 마운트 시에만 실행
     if (!isVisited.current) {
-      incrementVisitors();
+      incrementVisitors(); // 방문자 수 증가
       isVisited.current = true;
     }
-  }, []); // 빈 의존성 배열로 마운트 시에만 실행되도록 수정
+    setLoaded(true); // 클라이언트 렌더링 완료
+  }, [incrementVisitors]);
+
+  // Hydration이 완료될 때까지 렌더링하지 않음
+  if (!loaded) return null;
 
   return (
     <div className="flex space-x-8">
       <div className="flex items-center space-x-2">
-        <span className="text-[#9D95B9]">
-          <MdPeopleOutline />
-        </span>
+        <MdPeopleOutline className="text-[#9D95B9] text-2xl" />
         <div className="text-[#9D95B9]">
           <span className="font-semibold">Total Visitors: </span>
           {totalVisitors.toLocaleString()}
         </div>
       </div>
       <div className="flex items-center space-x-2">
-        <span className="text-[#9D95B9]">
-          <MdOutlineCalendarToday />
-        </span>
+        <MdOutlineCalendarToday className="text-[#9D95B9] text-2xl" />
         <div className="text-[#9D95B9]">
           <span className="font-semibold">Today: </span>
           {todayVisitors.toLocaleString()}

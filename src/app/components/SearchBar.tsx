@@ -19,7 +19,7 @@ const SearchBar = () => {
 
         const data = await response.json();
         setUser(data); // Zustand에 저장
-        router.push("/test2"); // 프로필 페이지로 이동
+        router.push("/search"); // 프로필 페이지로 이동
       } catch (error) {
         console.error("Error fetching data:", error);
         alert("User not found. Please try again.");

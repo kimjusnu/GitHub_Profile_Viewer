@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 // GitHub 유저 정보 인터페이스 정의
 export interface User {
+  html_url: string;
   login: string; // 유저의 GitHub 로그인 아이디 ♥️♥️♥️♥️♥️
   avatar_url: string; // 유저의 프로필 사진 URL ♥️♥️♥️♥️♥️
   name: string; // 유저의 실제 이름 (없는 경우 null일 수 있음) ♥️♥️♥️♥️♥️
@@ -48,6 +49,7 @@ interface UserStore {
   todayVisitors: number;
   incrementVisitors: () => void;
   resetTodayVisitors: () => void;
+  clearRepositories: () => void;
 }
 
 // LocalStorage에서 초기 방문자 수 가져오기
@@ -75,6 +77,9 @@ const github = create<UserStore>(set => ({
   setUser: user => set({ user }),
   setRepositories: repos => set({ repositories: repos }),
   clearUser: () => set({ user: null, repositories: [] }),
+
+  // 레포지토리만 초기화하는 함수 추가
+  clearRepositories: () => set({ repositories: [] }),
 
   // 방문자 수 초기화
   ...getInitialVisitors(),

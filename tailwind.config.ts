@@ -12,8 +12,12 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        "test2-bg": "url('/background2.svg')",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -28,7 +28,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex items-center bg-[#332957] rounded-full w-[700px] h-[64px]">
+    <div className="flex items-center bg-[#332957] rounded-3xl w-[700px] h-[64px]">
       <input
         type="text"
         value={userName}

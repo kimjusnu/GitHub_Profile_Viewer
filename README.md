@@ -8,8 +8,25 @@
 GitHub Profile Viewer는 GitHub 유저의 정보와 활동 내역을 한눈에 볼 수 있도록 돕는 웹 애플리케이션입니다. 사용자 이름만 입력하면 해당 유저의 프로필과 주요 레포지토리를 쉽고 빠르게 확인할 수 있습니다.
 
 [프로젝트 GitHub 레포지토리](https://github.com/kimjusnu/github_profile_viewer)  
-[GitHub Profile Viewr 기술블로그](https://dietisdie.tistory.com/category/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/GitHub%20Profile%20Viewer)
+[GitHub Profile Viewer 기술블로그](https://dietisdie.tistory.com/category/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/GitHub%20Profile%20Viewer)  
 [배포 링크](https://github-profile-viewer-mu.vercel.app/)
+
+---
+
+## 🎨 디자인
+
+![Main Page](./public/main.png)  
+_홈페이지 깃헙 유저 이름 검색_
+
+![Search Page](./public/search.png)  
+_유저의 정보 프로필 및 레포지토리 정보_
+
+---
+
+## 🎥 동작 영상
+
+![동작 영상](./public/demo.gif)  
+_애플리케이션의 주요 기능을 보여주는 짧은 데모 영상입니다._
 
 ---
 

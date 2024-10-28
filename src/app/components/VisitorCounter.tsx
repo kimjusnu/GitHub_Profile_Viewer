@@ -1,23 +1,47 @@
 "use client"; // 클라이언트 전용 컴포넌트
 import { useEffect, useRef, useState } from "react";
-import github from "../store/github";
 import { MdPeopleOutline, MdOutlineCalendarToday } from "react-icons/md";
+import axios from "axios"; // Axios로 API 호출
 
 const VisitorCounter = () => {
+  const [totalVisitors, setTotalVisitors] = useState(0);
+  const [todayVisitors, setTodayVisitors] = useState(0);
   const [loaded, setLoaded] = useState(false); // Hydration 방지용 상태
-  const totalVisitors = github(state => state.totalVisitors);
-  const todayVisitors = github(state => state.todayVisitors);
-  const incrementVisitors = github(state => state.incrementVisitors);
 
   const isVisited = useRef(false); // 첫 방문 여부 추적
 
+  // 서버에서 방문자 수를 가져오는 함수
+  const fetchVisitors = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/visitors");
+      const { totalVisitors, todayVisitors } = response.data;
+      setTotalVisitors(totalVisitors);
+      setTodayVisitors(todayVisitors);
+    } catch (error) {
+      console.error("Failed to fetch visitor data:", error);
+    }
+  };
+
+  // 방문자 수 증가 함수
+  const incrementVisitors = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/increment");
+      fetchVisitors(); // 증가 후 방문자 수 다시 가져오기
+    } catch (error) {
+      console.error("Failed to increment visitors:", error);
+    }
+  };
+
   useEffect(() => {
+    fetchVisitors(); // 처음 렌더링 시 방문자 수 가져오기
+
     if (!isVisited.current) {
-      incrementVisitors(); // 방문자 수 증가
+      incrementVisitors(); // 첫 방문 시 방문자 수 증가
       isVisited.current = true;
     }
+
     setLoaded(true); // 클라이언트 렌더링 완료
-  }, [incrementVisitors]);
+  }, []);
 
   // Hydration이 완료될 때까지 렌더링하지 않음
   if (!loaded) return null;

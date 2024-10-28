@@ -19,7 +19,7 @@ const page = () => {
             <br />
             and browse their repositories
             <br />
-            effortlessly.
+            easily.
           </div>
         </div>
         {/* 구분선 */}

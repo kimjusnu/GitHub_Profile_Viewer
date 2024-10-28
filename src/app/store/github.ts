@@ -11,14 +11,14 @@ export interface User {
   company: string; // 유저가 소속된 회사나 조직 ♥️♥️♥️♥️♥️
   followers: number; // 유저의 팔로워 수 ♥️♥️♥️♥️♥️
   following: number; // 유저가 팔로우 중인 사람 수 ♥️♥️♥️♥️♥️
-  created_at: string; // 계정 생성 날짜 (ISO 형식 문자열)
+  created_at: string; // 계정 생성 날짜 (ISO 형식 문자열) ♥️♥️♥️♥️♥️
   updated_at: string; // 프로필 마지막 업데이트 날짜 (ISO 형식 문자열)
-  email: string; // 유저의 이메일 주소 (공개된 경우에만 제공) ♥️♥️♥️♥️♥️
+  email: string; // 유저의 이메일 주소 (공개된 경우에만 제공)
   blog: string; // 유저의 개인 블로그나 웹사이트 URL ♥️♥️♥️♥️♥️
   twitter_username: string; // 유저의 트위터 사용자 이름 (없는 경우 null)
   hireable: boolean; // 유저가 고용 가능한지 여부 (true/false)
   public_gists: number; // 유저의 공개 Gist(메모 저장소) 수
-  public_repos: number; // 유저의 공개된 레포지토리 수
+  public_repos: number; // 유저의 공개된 레포지토리 수 ♥️♥️♥️♥️♥️
 }
 
 // 레포지토리 정보 인터페이스 정의

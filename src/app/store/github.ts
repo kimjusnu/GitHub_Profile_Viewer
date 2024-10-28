@@ -19,6 +19,8 @@ export interface User {
   hireable: boolean; // 유저가 고용 가능한지 여부 (true/false)
   public_gists: number; // 유저의 공개 Gist(메모 저장소) 수
   public_repos: number; // 유저의 공개된 레포지토리 수 ♥️♥️♥️♥️♥️
+  languages: { [key: string]: number }; // 언어 비율 데이터
+  contributors: number; // 기여자 수
 }
 
 // 레포지토리 정보 인터페이스 정의

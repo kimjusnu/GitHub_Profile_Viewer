@@ -3,6 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { MdPeopleOutline, MdOutlineCalendarToday } from "react-icons/md";
 import axios from "axios"; // Axios로 API 호출
 
+// 환경에 따라 API URL 설정 (Vercel 또는 로컬 개발 환경)
+const API_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://github-profile-viewer-steel.vercel.app" // Vercel 배포 주소
+    : "http://localhost:5000"; // 로컬 개발 주소
+
 const VisitorCounter = () => {
   const [totalVisitors, setTotalVisitors] = useState(0);
   const [todayVisitors, setTodayVisitors] = useState(0);
@@ -13,7 +19,7 @@ const VisitorCounter = () => {
   // 서버에서 방문자 수를 가져오는 함수
   const fetchVisitors = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/visitors");
+      const response = await axios.get(`${API_BASE_URL}/api/visitors`);
       const { totalVisitors, todayVisitors } = response.data;
       setTotalVisitors(totalVisitors);
       setTodayVisitors(todayVisitors);
@@ -25,7 +31,7 @@ const VisitorCounter = () => {
   // 방문자 수 증가 함수
   const incrementVisitors = async () => {
     try {
-      await axios.post("http://localhost:5000/api/increment");
+      await axios.post(`${API_BASE_URL}/api/increment`);
       fetchVisitors(); // 증가 후 방문자 수 다시 가져오기
     } catch (error) {
       console.error("Failed to increment visitors:", error);

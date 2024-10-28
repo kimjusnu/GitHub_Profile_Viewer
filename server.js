@@ -5,16 +5,13 @@ import cors from "cors";
 const app = express();
 const PORT = 5000;
 
-// MongoDB URI 설정 (비밀번호를 포함한 URI로 교체하세요)
+// MongoDB URI 설정 (올바른 사용자명과 비밀번호 포함)
 const mongoURI =
-  "mongodb+srv://admin:<password>@cluster0.mongodb.net/visitor_counter?retryWrites=true&w=majority";
+  "mongodb+srv://junsu4621:junsu2935@kimjunsu.c8no1.mongodb.net/?retryWrites=true&w=majority&appName=kimjunsu";
 
 // MongoDB 연결
 mongoose
-  .connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoURI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
@@ -22,7 +19,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
-// 방문자 스키마 정의 및 모델 생성
+// 방문자 스키마 및 모델 정의
 const visitorSchema = new mongoose.Schema({
   date: { type: String, required: true },
   totalVisitors: { type: Number, default: 0 },
@@ -31,7 +28,7 @@ const visitorSchema = new mongoose.Schema({
 
 const Visitor = mongoose.model("Visitor", visitorSchema);
 
-// 오늘 날짜를 가져오는 함수
+// 오늘 날짜 함수
 const getToday = () => new Date().toISOString().slice(0, 10);
 
 // 방문자 수 증가 API
@@ -64,7 +61,7 @@ app.get("/api/visitors", async (req, res) => {
   res.json(visitorData);
 });
 
-// 서버 시작
+// 서버 실행
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

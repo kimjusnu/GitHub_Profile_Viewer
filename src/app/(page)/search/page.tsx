@@ -81,9 +81,6 @@ const Profile = () => {
             <div className="font-semibold text-[#9D95B9]">Bio:</div>
             <div>{user.bio || "N/A"}</div>
 
-            <div className="font-semibold text-[#9D95B9]">Email:</div>
-            <div>{user.email || "N/A"}</div>
-
             <div className="font-semibold text-[#9D95B9]">Blog:</div>
             <div className="overflow-hidden text-ellipsis whitespace-nowrap hover:underline">
               <a href={user.blog} target="_blank" rel="noopener noreferrer">
@@ -102,6 +99,9 @@ const Profile = () => {
 
             <div className="font-semibold text-[#9D95B9]">Following:</div>
             <div>{user.following}</div>
+
+            <div className="font-semibold text-[#9D95B9]">Repositories:</div>
+            <div>{user.public_repos}</div>
 
             <div className="font-semibold text-[#9D95B9]">
               GitHub Member Since:

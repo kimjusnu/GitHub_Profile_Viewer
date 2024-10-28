@@ -29,29 +29,25 @@ GitHub Profile Viewer는 GitHub 유저의 정보와 활동 내역을 한눈에 �
 
 ### 1️⃣ 새로고침 시 방문기록 숫자 증가
 
-![새로고침 시 방문기록 숫자 증가](https://github.com/user-attachments/assets/e5d9f43f-d2f8-4042-b317-5ea7e2d7d967)  
-_방문자의 수를 보여줍니다._
+https://github.com/user-attachments/assets/e5d9f43f-d2f8-4042-b317-5ea7e2d7d967
 
 ---
 
 ### 2️⃣ 존재하지 않는 사용자의 경우
 
-![존재하지 않는 사용자의 경우](https://github.com/user-attachments/assets/7e35e04d-efa4-4a2b-a3fd-10c8cd6a3545)  
-_존재하지 않는 이름을 검색합니다._
+https://github.com/user-attachments/assets/7e35e04d-efa4-4a2b-a3fd-10c8cd6a3545
 
 ---
 
 ### 3️⃣ 존재하는 사용자의 경우
 
-![존재하는 사용자의 경우](https://github.com/user-attachments/assets/724d4a09-e3ef-4d3c-9431-429c0c3378d0)  
-_존재하는 이름을 검색합니다._
+https://github.com/user-attachments/assets/724d4a09-e3ef-4d3c-9431-429c0c3378d0
 
 ---
 
 ### 4️⃣ 처음으로 돌아가기
 
-![처음으로 돌아가기](https://github.com/user-attachments/assets/450e5d25-e545-4fc1-b9ab-1f7bfa1350c0)  
-_처음으로 되돌아갑니다._
+https://github.com/user-attachments/assets/450e5d25-e545-4fc1-b9ab-1f7bfa1350c0
 
 ---
 
